@@ -5,15 +5,14 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     public PlayerData playerData;
-    public bool isAttacked = false;
     
     void OnTriggerEnter2D(Collider2D other)
     {
         if (playerData.health > 0) {
             if (other.CompareTag("Enemy")) {
                 Debug.Log(playerData.charName + " collided with " + other.GetComponent<Enemy>().enemyData.charName);
-                if (!isAttacked) {
-                    isAttacked = true;
+                if (!playerData.isAttacked) {
+                    playerData.isAttacked = true;
                     //SetBattleData(other);
                     LevelLoader.instance.LoadLevel("BattleArena");
                 }

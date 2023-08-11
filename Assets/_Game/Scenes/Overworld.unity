@@ -360,6 +360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 1bb57f32541e3e723b333caa0b96ed45, type: 2}
+  rb: {fileID: 807105558}
+  moveSpeed: 5
 --- !u!4 &807105555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7182544626917080950, guid: f3a40a0acb263527dabe43096ac5d0ae, type: 3}
@@ -2555,11 +2557,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7182544626917080950, guid: f3a40a0acb263527dabe43096ac5d0ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.07392464
+      value: 0.47
       objectReference: {fileID: 0}
     - target: {fileID: 7182544626917080950, guid: f3a40a0acb263527dabe43096ac5d0ae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.22238573
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7182544626917080950, guid: f3a40a0acb263527dabe43096ac5d0ae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2571,15 +2573,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7182544626917080950, guid: f3a40a0acb263527dabe43096ac5d0ae, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7182544626917080950, guid: f3a40a0acb263527dabe43096ac5d0ae, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7182544626917080950, guid: f3a40a0acb263527dabe43096ac5d0ae, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7182544626917080950, guid: f3a40a0acb263527dabe43096ac5d0ae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

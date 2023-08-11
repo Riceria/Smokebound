@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (!isMoving)
+        if (!isMoving && !playerData.isAttacked)
         {
             moveVector = controls.gameplay.move.ReadValue<Vector2>();
 
