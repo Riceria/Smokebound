@@ -5,37 +5,73 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    // this field will contain the actions wrapper instance
     PlayerControls controls;
     public PlayerData playerData;
+    private Animator animator;
+    private bool isMoving;
+    private Vector2 moveVector;
+    public Rigidbody2D rb;
+    public float moveSpeed = 5f;
 
-    void Awake()
+    private void Awake()
     {
         // instantiate the actions wrapper class
         controls = new PlayerControls();
 
-        // add a callback method for when gameplay actions are performed
-        controls.gameplay.jump.performed += OnJump;
+        animator = GetComponent<Animator>();
+
+        // add callback methods for when gameplay actions are performed
         controls.gameplay.move.performed += OnMove;
     }
 
-    void Start()
+    private void Start()
     {
         Debug.Log("started");
     }
 
-    void Update()
+    private void Update()
     {
-        Vector2 moveVector = controls.gameplay.move.ReadValue<Vector2>();
-        this.transform.Translate(moveVector * (Time.deltaTime * 3));
-        playerData.currentPosition = transform.position;
+        if (!isMoving)
+        {
+            moveVector = controls.gameplay.move.ReadValue<Vector2>();
 
+            // remove diagonal movement
+            if (moveVector.x != 0) {
+                moveVector.y = 0;
+            }
+
+            if (moveVector != Vector2.zero)
+            {
+                animator.SetFloat("Horizontal", moveVector.x);
+                animator.SetFloat("Vertical", moveVector.y);
+
+                if (moveVector.x == 1 || moveVector.x == -1 ||
+                    moveVector.y == 1 || moveVector.y == -1)
+                {
+                    animator.SetFloat("Last_Horizontal", moveVector.x);
+                    animator.SetFloat("Last_Vertical", moveVector.y);
+                }
+
+                var targetPos = transform.position;
+                targetPos.x += moveVector.x;
+                targetPos.y += moveVector.y;
+
+                StartCoroutine(Move(targetPos));
+            }
+        }
+        animator.SetBool("isMoving", isMoving);
     }
 
-    private void OnJump(InputAction.CallbackContext context)
+    IEnumerator Move(Vector3 targetpos)
     {
-        // this is the "jump" action callback method
-        //Debug.Log("Jump!");
+        isMoving = true;
+        while ((targetpos - transform.position).sqrMagnitude > Mathf.Epsilon)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetpos, moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+        transform.position = targetpos;
+        isMoving = false;
     }
 
     private void OnMove(InputAction.CallbackContext context)

@@ -1,19 +1,10 @@
 {
-    "name": "ActionsAsset",
+    "name": "PlayerControls",
     "maps": [
         {
             "name": "gameplay",
             "id": "2e5187c5-a2e5-4485-82d4-272225223b18",
             "actions": [
-                {
-                    "name": "jump",
-                    "type": "Button",
-                    "id": "8b0e7465-6387-4ff7-9b20-e8f89b39beee",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
                 {
                     "name": "move",
                     "type": "Value",
@@ -25,17 +16,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "7edb73b5-6ec0-4f74-8674-029f8ecaa856",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "WASD",
                     "id": "1cae80bc-d169-4f0e-8153-53c62497424c",
