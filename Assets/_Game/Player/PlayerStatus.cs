@@ -13,6 +13,7 @@ public class PlayerStatus : MonoBehaviour
                 Debug.Log(playerData.charName + " collided with " + other.GetComponent<Enemy>().enemyData.charName);
                 if (!playerData.isAttacked) {
                     playerData.isAttacked = true;
+                    Debug.Log(playerData.charName + " has been attacked!");
                     //SetBattleData(other);
                     LevelLoader.instance.LoadLevel("BattleArena");
                 }
