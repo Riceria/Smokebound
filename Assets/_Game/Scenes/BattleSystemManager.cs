@@ -13,29 +13,31 @@ public class BattleSystemManager : MonoBehaviour
         StartCoroutine(BeginBattle());
         // StartCoroutine(PlayerTurn());
         // StartCoroutine(EnemyTurn());
-        // StartCoroutine(Win());
+        //StartCoroutine(Win());
         // StartCoroutine(Lose());
     }
 
     IEnumerator BeginBattle()
     {
         yield return new WaitForSeconds(1);
+        yield return StartCoroutine(PlayerTurn());
     }
 
-    // IEnumerator PlayerTurn()
-    // {
-    //     yield return new WaitForSeconds(1);
-    // }
+    IEnumerator PlayerTurn()
+    {
+        yield return new WaitForSeconds(1);
+    }
 
     // IEnumerator EnemyTurn()
     // {
     //     yield return new WaitForSeconds(1);
     // }
 
-    // IEnumerator Win()
-    // {
-    //     yield return new WaitForSeconds(1);
-    // }
+    IEnumerator Win()
+    {
+        Debug.Log("Battle won!");
+        yield return new WaitForSeconds(1);
+    }
 
     // IEnumerator Lose()
     // {

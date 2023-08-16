@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   charName: Triangle
-  currentPosition: {x: 0, y: 0}
   characterGameObject: {fileID: 0}
   level: 1
   maxHealth: 100

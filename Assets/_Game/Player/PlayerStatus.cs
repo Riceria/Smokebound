@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     public PlayerData playerData;
+    private EnemyData enemyData;
     
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,26 +15,33 @@ public class PlayerStatus : MonoBehaviour
                 if (!playerData.isAttacked) {
                     playerData.isAttacked = true;
                     Debug.Log(playerData.charName + " has been attacked!");
-                    //SetBattleData(other);
+                    SetBattleData(other);
                     LevelLoader.instance.LoadLevel("BattleArena");
                 }
             }
         }
     }
 
-    // private void SetBattleData(Collider2D other)
-    // {
-    //     // Player Data
-    //     playerStatus.position[0] = this.transform.position.x;
-    //     playerStatus.position[1] = this.transform.position.y;
+    private void SetBattleData(Collider2D other)
+    {
+        // Player Data
+        playerData.currentPosition = GetComponent<Rigidbody2D>().position;
 
-    //     // Enemy Data
-    //     PlayerData status = other.gameObject.GetComponent<StatusManager>().enemyStatus;
-    //     enemyStatus.charName = status.charName;
-    //     enemyStatus.characterGameObject = status.characterGameObject.transform.GetChild(0).gameObject;  
-    //     enemyStatus.health = status.health;
-    //     enemyStatus.maxHealth = status.maxHealth;
-    //     enemyStatus.mana = status.mana;
-    //     enemyStatus.maxMana = status.maxMana;
-    // }
+        // Enemy Data
+        EnemyData status = other.gameObject.GetComponent<Enemy>().enemyData;
+        Debug.Log(status.charName);
+        Debug.Log(status.characterGameObject);
+        Debug.Log(status.level);
+        Debug.Log(status.health);
+        Debug.Log(status.maxHealth);
+        Debug.Log(status.mana);
+        Debug.Log(status.maxMana);
+        // enemyData.charName = status.charName;
+        // enemyData.characterGameObject = status.characterGameObject.transform.GetChild(0).gameObject;
+        // enemyData.level = status.level;
+        // enemyData.health = status.health;
+        // enemyData.maxHealth = status.maxHealth;
+        // enemyData.mana = status.mana;
+        // enemyData.maxMana = status.maxMana;
+    }
 }

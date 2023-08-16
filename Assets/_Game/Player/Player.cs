@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -13,13 +15,13 @@ public class Player : MonoBehaviour
     private Vector3[] bounds;
     private Animator animator;
     private Rigidbody2D rb;
-    private bool isMoving;
+    private bool isMoving, wasMovingVertical;
     private Vector2 moveVector;
     public float moveSpeed = 5f;
 
     void Awake()
     {
-        // instantiate the actions wrapper class
+        // instantiate the actions wrapper class & component references
         controls = new PlayerControls();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -36,35 +38,58 @@ public class Player : MonoBehaviour
         currentTilemap.CompressBounds();
     }
 
+    void Update()
+    {
+        moveVector = controls.gameplay.move.ReadValue<Vector2>();
+        bool isMovingHorizontal = Mathf.Abs(moveVector.x) > 0.5f;
+        bool isMovingVertical = Mathf.Abs(moveVector.y) > 0.5f;
+        
+        // Disable diagonal movement & prioritize direction of last key pressed
+        if (isMovingVertical && isMovingHorizontal)
+        {
+            // Round normalized vector to 1 or -1
+            if (wasMovingVertical) {
+                moveVector.y = 0;
+                moveVector.x = Mathf.Round(moveVector.x);
+            } else {
+                moveVector.x = 0;
+                moveVector.y = Mathf.Round(moveVector.y);
+            }
+        }
+        else if (isMovingHorizontal)
+        {
+            moveVector.y = 0;
+            wasMovingVertical = false;
+        }
+        else if (isMovingVertical)
+        {
+            moveVector.x = 0;
+            wasMovingVertical = true;
+        }
+    }
+
     void FixedUpdate()
     {
         if (!isMoving && !playerData.isAttacked)
         {
-            moveVector = controls.gameplay.move.ReadValue<Vector2>();
-
-            // remove diagonal movement
-            if (moveVector.x != 0) {
-                moveVector.y = 0;
-            }
-
-            // overworld walking animations
+            // Overworld walking animations
             if (moveVector != Vector2.zero)
             {
                 animator.SetFloat("Horizontal", moveVector.x);
                 animator.SetFloat("Vertical", moveVector.y);
 
-                if (moveVector.x == 1 || moveVector.x == -1 ||
-                    moveVector.y == 1 || moveVector.y == -1)
+                if (Mathf.Abs(moveVector.x) == 1 || 
+                    Mathf.Abs(moveVector.y) == 1)
                 {
                     animator.SetFloat("Last_Horizontal", moveVector.x);
                     animator.SetFloat("Last_Vertical", moveVector.y);
                 }
 
                 var targetPos = rb.position;
-                if (moveVector.x == 1 || moveVector.x == -1) {
+                if (Mathf.Abs(moveVector.x) == 1) {
                     targetPos.x += moveVector.x;
                 }
-                if (moveVector.y == 1 || moveVector.y == -1) {
+                if (Mathf.Abs(moveVector.y) == 1) {
                     targetPos.y += moveVector.y;
                 }
 

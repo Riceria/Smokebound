@@ -14,4 +14,15 @@ public class PlayerData : ScriptableObject
     public float maxMana = 100;
     public float health = 100;
     public float mana = 100;
+
+    void Awake()
+    {
+        currentPosition.x = 0.5f;
+        currentPosition.y = 0.3f;
+    }
+
+    private void OnEnable()
+    {
+        hideFlags = HideFlags.DontUnloadUnusedAsset;
+    }
 }

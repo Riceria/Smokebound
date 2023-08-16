@@ -15,6 +15,7 @@ public class LevelLoader : MonoBehaviour
     }
     #endregion
 
+    public Animator transition;
     public float transitionTime = 1f;
  
     public void LoadLevel(string levelName)
@@ -25,7 +26,7 @@ public class LevelLoader : MonoBehaviour
     IEnumerator LoadNamedLevel(string levelName)
     {
         // Start transition animation
-        //transition.SetTrigger("Start");
+        transition.SetTrigger("Start");
     
         yield return new WaitForSeconds(transitionTime);
     
@@ -33,6 +34,6 @@ public class LevelLoader : MonoBehaviour
         Debug.Log("Battle start! Loaded " + levelName);
     
         // End transition animation
-        //transition.SetTrigger("End");
+        transition.SetTrigger("End");
     }
 }
