@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -2624961374099997303}
   - component: {fileID: 6880024319270001865}
   - component: {fileID: 6992853533565400323}
-  - component: {fileID: 4323127338192552842}
+  - component: {fileID: 818373150053876088}
   m_Layer: 0
   m_Name: PlayerBattle
   m_TagString: Untagged
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2101895244, guid: 9251899127c539a43878641bd4730471, type: 3}
+  m_Sprite: {fileID: 2101465836, guid: 9251899127c539a43878641bd4730471, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -113,11 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8b1ae4e4e52b34ea557c1c11e076fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CategoryHash: 0.009161512
-  m_labelHash: 0.0029173007
+  m_CategoryHash: 9.932601e-39
+  m_labelHash: 0.00000011622998
   m_SpriteKey: 0
-  m_SpriteHash: 598926897
---- !u!95 &4323127338192552842
+  m_SpriteHash: 119770660
+--- !u!95 &818373150053876088
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -127,10 +127,10 @@ Animator:
   m_GameObject: {fileID: 8272029723616861658}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 547ebb0b71468fb48abecff7f1bae1b4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 22cf77c50d29cafc1872a669cec34d91, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

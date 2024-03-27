@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 32
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8094e1eebfb33fbac1e47520f5c0fc, type: 3}
+  m_Name: Triangle
+  m_EditorClassIdentifier: 
+  charName: Triangle
+  currentPosition: {x: 1.0432104, y: 0.22920588}
+  battlePosition: {fileID: 0}
+  isAttacked: 0
+  characterGameObject: {fileID: 0}
+  level: 1
+  maxHealth: 100
+  maxMana: 100
+  health: 100
+  mana: 100

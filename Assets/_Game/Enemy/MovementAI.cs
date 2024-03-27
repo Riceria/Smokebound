@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class MovementAI : MonoBehaviour
 {
-    public PlayerData playerData;
+    public CharacterStatus enemyStatus;
+    public CharacterStatus playerStatus;
     public Transform target; // target position
     Vector2 playerPos, enemyPos;
 
     void Update()
     {
-        if (!playerData.isAttacked)
+        if (!playerStatus.isAttacked)
         {
             // Chase or run away from the Player within a set distance
             playerPos = new Vector2(target.localPosition.x, target.localPosition.y);
@@ -26,6 +27,6 @@ public class MovementAI : MonoBehaviour
                 transform.position = Vector2.MoveTowards(enemyPos, playerPos, -1 * Time.deltaTime);
             }
         }
-
+        enemyStatus.currentPosition = enemyPos;
     }
 }
