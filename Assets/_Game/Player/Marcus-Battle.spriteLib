@@ -91,6 +91,84 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: -1513734683, guid: 9251899127c539a43878641bd4730471, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 6
+  - m_Name: Hurt
+    m_Hash: 666872612
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Hurt-1
+      m_Hash: 12694611
+      m_Sprite: {fileID: -268814676, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -268814676, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: Hurt-2
+      m_Hash: 432596457
+      m_Sprite: {fileID: 1673949552, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1673949552, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: Hurt-3
+      m_Hash: 785372543
+      m_Sprite: {fileID: 1282892761, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1282892761, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: Hurt-4
+      m_Hash: 816529628
+      m_Sprite: {fileID: -930408703, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -930408703, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: Hurt-5
+      m_Hash: 128741450
+      m_Sprite: {fileID: 1526993557, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1526993557, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: Hurt-6
+      m_Hash: 514138608
+      m_Sprite: {fileID: -595575660, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -595575660, guid: 9251899127c539a43878641bd4730471, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 6
+  - m_Name: Death
+    m_Hash: 646380074
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Death-1
+      m_Hash: 36616582
+      m_Sprite: {fileID: -1044711630, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1044711630, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: Death-2
+      m_Hash: 455600188
+      m_Sprite: {fileID: 1883824261, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1883824261, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: Death-3
+      m_Hash: 740350122
+      m_Sprite: {fileID: 548552940, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 548552940, guid: 9251899127c539a43878641bd4730471, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
+  - m_Name: LowHP
+    m_Hash: 974212908
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: LowHP-1
+      m_Hash: 796870036
+      m_Sprite: {fileID: 500711411, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 500711411, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: LowHP-2
+      m_Hash: 913708078
+      m_Sprite: {fileID: 1407462145, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1407462145, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: LowHP-3
+      m_Hash: 24192184
+      m_Sprite: {fileID: -1348938351, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1348938351, guid: 9251899127c539a43878641bd4730471, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638273004258337338
+  m_ModificationHash: 638471470956418840
   m_Version: 1

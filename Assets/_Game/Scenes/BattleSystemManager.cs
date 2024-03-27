@@ -16,8 +16,8 @@ public class BattleSystemManager : MonoBehaviour
     public TextMeshProUGUI enemyHP;
 
     public GameObject playerPrefab;
-    private Animator animator;
-    private bool isAttacking = false, isCasting = false, isPerformingAction;
+    public BattleAnimation animator; 
+    private bool isAttacking = false, isCasting = false, isPerformingAction, isAttacked;
 
     public GameObject enemyPrefab;
 
@@ -27,9 +27,10 @@ public class BattleSystemManager : MonoBehaviour
     public CharacterStatus enemyStatus;
 
     void Awake () {
-        Instantiate(playerPrefab, startPosition, Quaternion.identity);
+        // Instantiate(playerPrefab, startPosition, Quaternion.identity);
         Instantiate(enemyPrefab);
-        animator = playerPrefab.GetComponent<Animator>();
+        // animator = playerPrefab.GetComponent<Animator>();
+
     }
 
     void Start()
@@ -70,10 +71,21 @@ public class BattleSystemManager : MonoBehaviour
 
     IEnumerator PlayerTurn()
     {
+        animator.Idle();
         battleState = BattleState.PLAYERTURN;
         Debug.Log("Player turn");
         yield return new WaitForSeconds(1);
 
+        // Win or lose
+        if (playerStatus.health <= 0) {
+            battleState = BattleState.LOSE;
+            yield return StartCoroutine(Lose());
+        } else if (enemyStatus.health <= 0) {
+            battleState = BattleState.WIN;
+            yield return StartCoroutine(Win());
+        }
+
+        // Wait for player's action
         while (!isAttacking && !isCasting) {
             yield return null;
         }
@@ -84,18 +96,9 @@ public class BattleSystemManager : MonoBehaviour
 
         isAttacking = false;
         isCasting = false;
+        isAttacked = false;
 
-        if (playerStatus.health <= 0 || enemyStatus.health <= 0) {
-            StopAllCoroutines();
-        }
-
-        if (playerStatus.health <= 0) {
-            yield return StartCoroutine(Lose());
-        } else if (enemyStatus.health <= 0) {
-            yield return StartCoroutine(Win());
-        } else {
-            yield return StartCoroutine(EnemyTurn());
-        }
+        yield return StartCoroutine(EnemyTurn());
     }
 
     IEnumerator EnemyTurn()
@@ -103,19 +106,19 @@ public class BattleSystemManager : MonoBehaviour
         Debug.Log("Enemy turn");
         yield return new WaitForSeconds(1);
 
-        if (playerStatus.health <= 0 || enemyStatus.health <= 0) {
-            StopAllCoroutines();
-        }
-
+        // Win or lose
         if (playerStatus.health <= 0) {
+            battleState = BattleState.LOSE;
             yield return StartCoroutine(Lose());
         } else if (enemyStatus.health <= 0) {
+            battleState = BattleState.WIN;
             yield return StartCoroutine(Win());
-        }
-
-        if (playerStatus.health > 0) {
+        } else if (playerStatus.health > 0) {
             int damage = UnityEngine.Random.Range(0, 20);
             Debug.Log(enemyStatus.charName + " attacked");
+            animator.Hurt();
+            float newHP = playerStatus.health - damage;
+            animator.SetHealth(newHP);
             playerStatus.health -= damage;
             Debug.Log("Dealt " + damage + " damage");
 
@@ -154,27 +157,32 @@ public class BattleSystemManager : MonoBehaviour
         
         if (isAttacking) {
             Debug.Log("isAttacking: " + isAttacking);
-            animator.SetBool("isAttacking", isAttacking);
+            animator.Attack();
+            // animator.SetBool("isAttacking", isAttacking);
             damage = UnityEngine.Random.Range(5, 15);
             Debug.Log(playerStatus.charName + " attacked");
+            yield return new WaitForSeconds(0.5f);
         }
         else if (isCasting) {
             Debug.Log("isCasting: " + isCasting);
-            animator.SetBool("isCasting", isCasting);
+            animator.Magic();
+            // animator.SetBool("isCasting", isCasting);
             damage = UnityEngine.Random.Range(0, 30);
             Debug.Log(playerStatus.charName + " used Thunder!");
+            yield return new WaitForSeconds(2);
         }   
         
         enemyStatus.health -= damage;
         Debug.Log("Dealt " + damage + " damage");
 
-        // Give a short delay before changing the battle state and yielding to EnemyTurn
-        yield return new WaitForSeconds(0.5f);
-
         // Reset action flags
         isAttacking = false;
         isCasting = false;
-        isPerformingAction = false;        
+        isPerformingAction = false;   
+        animator.Reset();
+
+        // Give a short delay before changing the battle state and yielding to EnemyTurn
+        yield return new WaitForSeconds(0.5f);     
 
         battleState = BattleState.ENEMYTURN;
         yield return StartCoroutine(EnemyTurn());
