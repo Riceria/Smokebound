@@ -169,6 +169,27 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: -1348938351, guid: 9251899127c539a43878641bd4730471, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 3
+  - m_Name: Revive
+    m_Hash: 750367786
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Revive-1
+      m_Hash: 323624750
+      m_Sprite: {fileID: -1044711630, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1044711630, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: Revive-2
+      m_Hash: 172183188
+      m_Sprite: {fileID: 1883824261, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1883824261, guid: 9251899127c539a43878641bd4730471, type: 3}
+    - m_Name: Revive-3
+      m_Hash: 1027898882
+      m_Sprite: {fileID: 548552940, guid: 9251899127c539a43878641bd4730471, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 548552940, guid: 9251899127c539a43878641bd4730471, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
   m_PrimaryLibraryGUID: 
-  m_ModificationHash: 638471470956418840
+  m_ModificationHash: 638472418944356430
   m_Version: 1

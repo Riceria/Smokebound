@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   charName: Bren
-  currentPosition: {x: 0.08083932, y: 0.3}
+  currentPosition: {x: 0, y: 0}
   battlePosition: {fileID: 0}
   isAttacked: 1
+  isMoving: 0
   characterGameObject: {fileID: 0}
   level: 1
   maxHealth: 100
