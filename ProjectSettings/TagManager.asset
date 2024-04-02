@@ -5,15 +5,16 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - TriggerArea
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - SolidObjects
-  - 
+  - Transitions
   - 
   - 
   - 
@@ -44,6 +45,12 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 3729953241
+    locked: 0
+  - name: SolidObjects
+    uniqueID: 602175601
+    locked: 0
+  - name: Transitions
+    uniqueID: 3702750397
     locked: 0
   - name: Foreground
     uniqueID: 3259945331
