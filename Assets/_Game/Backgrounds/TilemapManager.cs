@@ -38,12 +38,6 @@ public class TilemapManager : MonoBehaviour
     private bool IsWithinTilemapBounds(Tilemap tilemap, Vector3 playerPosition)
     {
         BoundsInt bounds = tilemap.cellBounds;
-        Vector3 tilemapCenter = tilemap.transform.position + new Vector3(bounds.center.x, bounds.center.y, 0f);
-
-        // Check if player's position is within the bounds of the tilemap
-        return playerPosition.x >= tilemapCenter.x + bounds.min.x &&
-               playerPosition.x <= tilemapCenter.x + bounds.max.x &&
-               playerPosition.y >= tilemapCenter.y + bounds.min.y &&
-               playerPosition.y <= tilemapCenter.y + bounds.max.y;
+        return !bounds.Contains(currentTilemap.WorldToCell(playerPosition)) && !playerStatus.isTeleporting;
     }
 }

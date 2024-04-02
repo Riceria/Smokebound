@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
                     targetPos.y += moveVector.y;
                 }
 
-                if (AreaTransition(targetPos)) {
+                if (AreaTransition(targetPos) && !playerStatus.isTeleporting) {
                     StartCoroutine(Teleport(targetPos));
                 } else if (IsWalkable(targetPos)) {
                     StartCoroutine(Move(targetPos));
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         animator.SetBool("isMoving", isMoving);
-        Debug.Log("isTeleporting: " + playerStatus.isTeleporting);
+        // Debug.Log("isTeleporting: " + playerStatus.isTeleporting);
     }
 
     IEnumerator Move(Vector3 targetpos)
@@ -173,9 +173,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.position = targetpos;
-        tilemapManager.UpdatePlayerPosition(transform.position);
         isMoving = false;
         playerStatus.isMoving = false;
+        tilemapManager.UpdatePlayerPosition(transform.position);
         transitionTrigger.TransitionToTilemap(transitionTrigger.GetDestinationTilemap());
         yield return new WaitForSeconds(1);
         playerStatus.isTeleporting = false;

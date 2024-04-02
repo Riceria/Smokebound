@@ -8202,7 +8202,6 @@ GameObject:
   - component: {fileID: 529036940}
   - component: {fileID: 529036939}
   - component: {fileID: 529036938}
-  - component: {fileID: 529036943}
   m_Layer: 0
   m_Name: Aqualand
   m_TagString: Untagged
@@ -14035,21 +14034,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &529036943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 529036936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef282e5719e5587ab84c09641faf9ae2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStatus: {fileID: 11400000, guid: 1451b79645770ba45a7bb21573195d6d, type: 2}
-  enemyStatus: {fileID: 11400000, guid: c48307ec60ecd7754bc92c62e89b195a, type: 2}
-  currentEnemy: {fileID: 11400000, guid: 3ebe1b5718cfa2e4cb188fb577a44883, type: 2}
 --- !u!1 &551321589
 GameObject:
   m_ObjectHideFlags: 0
@@ -20932,6 +20916,7 @@ GameObject:
   - component: {fileID: 816400450}
   - component: {fileID: 816400452}
   - component: {fileID: 816400453}
+  - component: {fileID: 816400454}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -21108,6 +21093,22 @@ MonoBehaviour:
   - {fileID: 719658882}
   - {fileID: 1082703639}
   currentTilemap: {fileID: 1060818095}
+--- !u!114 &816400454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816400449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef282e5719e5587ab84c09641faf9ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStatus: {fileID: 11400000, guid: 1451b79645770ba45a7bb21573195d6d, type: 2}
+  enemyStatus: {fileID: 11400000, guid: c48307ec60ecd7754bc92c62e89b195a, type: 2}
+  currentEnemy: {fileID: 11400000, guid: 3ebe1b5718cfa2e4cb188fb577a44883, type: 2}
+  tilemapManager: {fileID: 0}
 --- !u!1 &847718772
 GameObject:
   m_ObjectHideFlags: 0
@@ -22503,7 +22504,6 @@ GameObject:
   - component: {fileID: 976902407}
   - component: {fileID: 976902406}
   - component: {fileID: 976902405}
-  - component: {fileID: 976902410}
   m_Layer: 0
   m_Name: Grassland
   m_TagString: Untagged
@@ -28340,21 +28340,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &976902410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976902403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef282e5719e5587ab84c09641faf9ae2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStatus: {fileID: 11400000, guid: 1451b79645770ba45a7bb21573195d6d, type: 2}
-  enemyStatus: {fileID: 11400000, guid: c48307ec60ecd7754bc92c62e89b195a, type: 2}
-  currentEnemy: {fileID: 11400000, guid: 3ebe1b5718cfa2e4cb188fb577a44883, type: 2}
 --- !u!1 &1060818092
 GameObject:
   m_ObjectHideFlags: 0
@@ -35455,7 +35440,6 @@ GameObject:
   - component: {fileID: 1367538452}
   - component: {fileID: 1367538451}
   - component: {fileID: 1367538450}
-  - component: {fileID: 1367538455}
   m_Layer: 0
   m_Name: Icyland
   m_TagString: Untagged
@@ -41464,21 +41448,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1367538455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1367538448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef282e5719e5587ab84c09641faf9ae2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStatus: {fileID: 11400000, guid: 1451b79645770ba45a7bb21573195d6d, type: 2}
-  enemyStatus: {fileID: 11400000, guid: c48307ec60ecd7754bc92c62e89b195a, type: 2}
-  currentEnemy: {fileID: 11400000, guid: 3ebe1b5718cfa2e4cb188fb577a44883, type: 2}
 --- !u!1 &1491182572
 GameObject:
   m_ObjectHideFlags: 3
@@ -49011,7 +48980,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541330ea5558227785be8bc00acd47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationTilemap: {fileID: 1707400153}
+  destinationTilemap: {fileID: 759025528}
   tilemapManager: {fileID: 816400453}
   playerLayer:
     serializedVersion: 2
@@ -49245,7 +49214,6 @@ GameObject:
   - component: {fileID: 1985514474}
   - component: {fileID: 1985514473}
   - component: {fileID: 1985514472}
-  - component: {fileID: 1985514477}
   m_Layer: 0
   m_Name: Rockland
   m_TagString: Untagged
@@ -55374,21 +55342,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1985514477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1985514470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef282e5719e5587ab84c09641faf9ae2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerStatus: {fileID: 11400000, guid: 1451b79645770ba45a7bb21573195d6d, type: 2}
-  enemyStatus: {fileID: 11400000, guid: c48307ec60ecd7754bc92c62e89b195a, type: 2}
-  currentEnemy: {fileID: 11400000, guid: 3ebe1b5718cfa2e4cb188fb577a44883, type: 2}
 --- !u!1 &2045588237
 GameObject:
   m_ObjectHideFlags: 0

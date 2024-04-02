@@ -24,6 +24,10 @@ public class TilemapTransitionTrigger : MonoBehaviour
 
     public void TransitionToTilemap(Tilemap destination)
     {
+        if (tilemapManager.currentTilemap == destination) {
+            return;
+        }
+        
         Debug.Log("TransitionToTilemap(): ENTERING");
         tilemapManager.playerStatus.isTeleporting = true;
         // Enable renderer component of destination tilemap
