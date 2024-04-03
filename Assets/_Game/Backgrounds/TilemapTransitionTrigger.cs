@@ -10,6 +10,10 @@ public class TilemapTransitionTrigger : MonoBehaviour
     private GameObject player;
     private CinemachineVirtualCamera[] cams;
 
+    // Adjacent triggers should be 2 x-values apart
+    [SerializeField] private Vector3 teleportLocation;
+    [SerializeField] private bool isHorizontalTransition;
+
     void Awake() {
         player = GameObject.Find("Player");
     }
@@ -24,6 +28,9 @@ public class TilemapTransitionTrigger : MonoBehaviour
 
     public void TransitionToTilemap(Tilemap destination)
     {
+        float x_offset = 0.5f;
+        float y_offset = 0.3f;
+
         if (tilemapManager.currentTilemap == destination) {
             return;
         }
@@ -34,7 +41,7 @@ public class TilemapTransitionTrigger : MonoBehaviour
         destination.GetComponent<TilemapRenderer>().enabled = true;
 
         // Update the current tilemap in TileMapManager
-        tilemapManager.UpdateCurrentTilemap(destination);
+        tilemapManager.SetCurrentTilemap(destination);
 
         // Handle camera transition
         cams = tilemapManager.cams;
@@ -54,6 +61,21 @@ public class TilemapTransitionTrigger : MonoBehaviour
                 cam.enabled = false;
             }
         }
+
+        // teleportLocation should be an int
+        Vector3 tempTeleport = new(teleportLocation.x, teleportLocation.y, player.transform.position.z);
+        Debug.Log("tempTeleport (original): " + tempTeleport);
+        if (isHorizontalTransition) {
+            // Keep same vertical position
+            tempTeleport.y = player.transform.position.y;
+            tempTeleport.x += x_offset;
+        } else {
+            tempTeleport.x = player.transform.position.x;
+            tempTeleport.y += y_offset;
+        }
+        Debug.Log("tempTeleport (modified): " + tempTeleport);
+        player.transform.position = tempTeleport;
+
         // tilemapManager.playerStatus.isTeleporting = false;
         Debug.Log("TransitionToTilemap(): EXITING");
     }

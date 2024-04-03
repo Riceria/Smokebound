@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
-
 // using System.Numerics;
 // using System.Collections.Generic;
 // using Unity.Collections;
@@ -13,7 +12,7 @@ using UnityEngine.Tilemaps;
 
 public class PlayerMovement : MonoBehaviour
 {
-    PlayerControls controls;
+    // PlayerControls controls;
     public CharacterStatus playerStatus;
     public TilemapManager tilemapManager;
     [SerializeField] private TilemapTransitionTrigger transitionTrigger;
@@ -23,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3[] bounds;
     private Animator animator;
     // private Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
+    private Vector2 colliderSize;
     private bool isMoving, wasMovingVertical;
     private Vector2 moveVector;
     public float moveSpeed = 5f;
@@ -34,8 +35,11 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         // instantiate the actions wrapper class & component references
-        controls = new PlayerControls();
+        // controls = new PlayerControls();
         animator = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
+        // colliderSize = new Vector2(1,2);
+        colliderSize = new Vector2(0.9f, 0.9f);
         bounds = new Vector3[2];
         moveDuration = 0.15f;
         playerStatus.isAttacked = false;
@@ -44,18 +48,22 @@ public class PlayerMovement : MonoBehaviour
         playerStatus.currentPosition.y = 0.3f;
 
         // add callback methods for when gameplay actions are performed
-        controls.gameplay.move.performed += OnMove;
+        // controls.gameplay.move.performed += OnMove;
+        // controls.gameplay.submit.performed += OnSubmit;
     }
 
     void Start()
     {
         Debug.Log("started");
         playerStatus.characterGameObject = gameObject;
+        boxCollider.offset = new Vector2(0, -0.3f);
     }
 
     void Update()
     {
-        moveVector = controls.gameplay.move.ReadValue<Vector2>();
+        tilemapManager.UpdateCurrentTilemap();
+        // moveVector = controls.gameplay.move.ReadValue<Vector2>();
+        moveVector = InputManager.GetInstance().GetMoveDirection();
         bool isMovingHorizontal = Mathf.Abs(moveVector.x) > 0.5f;
         bool isMovingVertical = Mathf.Abs(moveVector.y) > 0.5f;
         
@@ -85,13 +93,30 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isMoving && !playerStatus.isAttacked)
+        if (!isMoving && !playerStatus.isAttacked && !playerStatus.isTeleporting && !DialogueManager.GetInstance().dialogueIsPlaying)
         {
             // Overworld walking animations
             if (moveVector != Vector2.zero)
             {
                 animator.SetFloat("Horizontal", moveVector.x);
                 animator.SetFloat("Vertical", moveVector.y);
+                
+                // Change direction of collider depending on where player is facing
+                if (moveVector.y == -1) {
+                    // colliderSize = new Vector2(1, 2);
+                    boxCollider.offset = new Vector2(0, -0.2f);
+                } else if (moveVector.y == 1) {
+                    // colliderSize = new Vector2(1, 2);
+                    boxCollider.offset = new Vector2(0, 0.6f);
+                } else if (moveVector.x == 1) {
+                    // colliderSize = new Vector2(2, 1);
+                    boxCollider.offset = new Vector2(0.5f, 0.2f);
+                } else if (moveVector.x == -1) {
+                    // colliderSize = new Vector2(2, 1);
+                    boxCollider.offset = new Vector2(-0.5f, 0.2f);
+                }
+
+                boxCollider.size = colliderSize;
 
                 if (Mathf.Abs(moveVector.x) == 1 || 
                     Mathf.Abs(moveVector.y) == 1)
@@ -111,9 +136,10 @@ public class PlayerMovement : MonoBehaviour
 
                 if (AreaTransition(targetPos) && !playerStatus.isTeleporting) {
                     StartCoroutine(Teleport(targetPos));
-                } else if (IsWalkable(targetPos)) {
+                } else if (IsWalkable(targetPos) && !playerStatus.isTeleporting) {
                     StartCoroutine(Move(targetPos));
                 }
+                playerStatus.currentPosition = transform.position;
             }
         }
         animator.SetBool("isMoving", isMoving);
@@ -148,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.position = targetpos;
-        tilemapManager.UpdatePlayerPosition(transform.position);
+        // tilemapManager.UpdatePlayerPosition(transform.position);
         isMoving = false;
         playerStatus.isMoving = false;
     }
@@ -175,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
         transform.position = targetpos;
         isMoving = false;
         playerStatus.isMoving = false;
-        tilemapManager.UpdatePlayerPosition(transform.position);
+        // tilemapManager.UpdatePlayerPosition(transform.position);
         transitionTrigger.TransitionToTilemap(transitionTrigger.GetDestinationTilemap());
         yield return new WaitForSeconds(1);
         playerStatus.isTeleporting = false;
@@ -229,18 +255,23 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void OnMove(InputAction.CallbackContext context)
-    {
-        // this is the "move" action callback method
-        //Debug.Log(context);
-    }
-    void OnEnable()
-    {
-        controls.gameplay.Enable();
-    }
+    // private void OnMove(InputAction.CallbackContext context)
+    // {
+    //     // this is the "move" action callback method
+    //     //Debug.Log(context);
+    // }
+    // private void OnSubmit(InputAction.CallbackContext context)
+    // {
+    //     // this is the "submit" action callback method
+    //     Debug.Log(context);
+    // }
+    // void OnEnable()
+    // {
+    //     controls.gameplay.Enable();
+    // }
 
-    void OnDisable()
-    {
-        controls.gameplay.Disable();
-    }
+    // void OnDisable()
+    // {
+    //     controls.gameplay.Disable();
+    // }
 }

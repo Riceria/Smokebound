@@ -63,6 +63,7 @@ public class LevelLoader : MonoBehaviour
 
     public Animator transition;
     public float transitionTime = 1f;
+    public GameObject player;
 
     public void LoadLevel(string levelName)
     {
@@ -71,14 +72,21 @@ public class LevelLoader : MonoBehaviour
 
     IEnumerator LoadNamedLevel(string levelName)
     {
+        // player = GameObject.Find("Player");
         // Start transition animation
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
+        float xpos = PlayerPrefs.GetFloat("X");
+        float ypos = PlayerPrefs.GetFloat("Y");
+        float zpos = PlayerPrefs.GetFloat("Z");
+        Vector3 playerPos = new(xpos, ypos, zpos);
+        Debug.Log("playerPosition: " + playerPos);
 
         // Unload previous scene
         SceneManager.LoadScene(levelName);
         Debug.Log("Loaded " + levelName);
+        Instantiate(player, playerPos, Quaternion.identity);
 
         // End transition animation
         transition.SetTrigger("End");

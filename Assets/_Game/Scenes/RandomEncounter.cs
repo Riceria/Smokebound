@@ -59,6 +59,8 @@ public class RandomEncounter : MonoBehaviour
             playerStatus.isAttacked = true;
             Debug.Log(playerStatus.charName + " has been attacked!");
             SetBattleData();
+            PlayerPrefs.SetFloat("X", playerStatus.currentPosition.x);
+            PlayerPrefs.SetFloat("Y", playerStatus.currentPosition.y);
             LevelLoader.instance.LoadLevel("BattleArena");
         } 
 

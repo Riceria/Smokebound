@@ -1,4 +1,5 @@
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -27,11 +28,27 @@ public class TilemapManager : MonoBehaviour
         }
     }
 
+    public CinemachineVirtualCamera GetActiveCam() {
+        foreach (CinemachineVirtualCamera cam in cams)
+        {
+            if (cam.isActiveAndEnabled) {
+                // Debug.Log("Active cam: " + cam);
+                // Debug.Log(currentTilemap);
+                return cam;
+            }
+        }
+        return null;
+    }
+
+    public void UpdateCurrentTilemap() {
+        currentTilemap = GetActiveCam().GetComponent<TilemapCameraReference>().associatedTilemap;
+    }
+
     public Tilemap GetCurrentTilemap() {
         return currentTilemap;
     }
 
-    public void UpdateCurrentTilemap(Tilemap newTilemap) {
+    public void SetCurrentTilemap(Tilemap newTilemap) {
         currentTilemap = newTilemap;
     }
 
